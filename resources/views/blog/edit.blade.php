@@ -21,7 +21,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <h3>Create Blog</h3>
+                    <h3>Update Blog</h3>
 
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -32,21 +32,22 @@
                             </ul>
                         </div>
                     @endif
-                    <form action="{{ route('blog.insert') }}" method="POST">
+                    <form action="{{ route('blog.update', $post->id) }}" method="POST">
                         @csrf
+                        @method('PUT')
                         <div class="mb-3">
                             <label class="form-label">Title</label>
                             <input type="text" class="form-control @error('title') is-invalid @enderror"
-                                name="title">
+                                name="title" value="{{ $post->title }}">
                             @error('title')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Post Body</label>
-                            <textarea name="body" class="form-control" rows="5"></textarea>
+                            <textarea name="body" class="form-control" rows="10">{{ $post->body }}</textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Create</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
 
                     </form>
 

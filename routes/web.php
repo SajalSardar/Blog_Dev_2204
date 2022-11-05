@@ -15,9 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function(){
+Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('blog/', [BlogController::class, 'index'])->name('blog.index');
 Route::get('blog/create', [BlogController::class, 'create'])->name('blog.create');
-Route::post('blog/create',[BlogController::class, 'insert'])->name('blog.insert');
+Route::post('blog/create', [BlogController::class, 'insert'])->name('blog.insert');
+Route::get('blog/show/{id}', [BlogController::class, 'show'])->name('blog.show');
+Route::get('blog/edit/{id}', [BlogController::class, 'edit'])->name('blog.edit');
+Route::put('blog/update/{id}', [BlogController::class, 'update'])->name('blog.update');
+Route::delete('blog/delete/{id}', [BlogController::class, 'delete'])->name('blog.delete');
